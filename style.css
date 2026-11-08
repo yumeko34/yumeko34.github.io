@@ -1,0 +1,748 @@
+/* =====================
+   GLOBAL
+   ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e3a5f, #1e40af);
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: #fff;
+    line-height: 1.6;
+}
+
+/* =====================
+   HEADER
+   ===================== */
+header {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 18px 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* =====================
+   NAVIGATION
+   ===================== */
+nav {
+    background: rgba(30, 58, 95, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 62px;
+    z-index: 99;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    border-radius: 30px;
+    transition: all 0.25s ease;
+}
+
+nav a:hover,
+nav a.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    min-width: 200px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    z-index: 200;
+}
+
+.dropdown-content a {
+    color: #1e3a5f;
+    display: block;
+    padding: 12px 18px;
+    font-size: 0.95rem;
+    border-radius: 0;
+}
+
+.dropdown-content a:hover {
+    background: #e0f2fe;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content.show {
+    display: block;
+}
+
+/* =====================
+   SLIDER
+   ===================== */
+.slider {
+    width: 100%;
+    height: 240px;
+    overflow: hidden;
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.6s ease;
+}
+
+.slide {
+    min-width: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.text-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.text-overlay h1 {
+    color: white;
+    font-size: 1.6rem;
+    text-align: center;
+    text-shadow: 0 3px 15px rgba(0,0,0,0.6);
+}
+
+/* =====================
+   FUN FACTS SECTION
+   ===================== */
+#drop {
+    padding: 40px 16px;
+    text-align: center;
+}
+
+#drop h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+    color: white;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+#drop p {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    color: rgba(255,255,255,0.9);
+    font-size: 1rem;
+}
+
+.funfact-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    max-width: 380px;
+    margin: 0 auto;
+}
+
+.funfact-card {
+    height: 150px;
+    perspective: 1000px;
+}
+
+.funfact-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+}
+
+.funfact-card:hover .funfact-inner,
+.funfact-card:active .funfact-inner {
+    transform: rotateY(180deg);
+}
+
+.funfact-front,
+.funfact-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(23,0,0,0.25);
+}
+
+.funfact-front {
+    background: rgba(30, 58, 95, 0.6);
+    backdrop-filter: blur(12px);
+    color: black;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.funfact-back {
+    background: rgba(0, 25, 75, 0.9);
+    color: #ffffff;
+    transform: rotateY(180deg);
+    font-size: 0.95rem;
+}
+
+/* See More Button */
+.see-more-container {
+    margin-top: 30px;
+}
+
+.see-more-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    color: darkblue;
+    text-decoration: none;
+    border-radius: 40px;
+    font-weight: 600;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: all 0.3s;
+}
+
+.see-more-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-3px);
+}
+
+/* =====================
+   ABOUT SECTION
+   ===================== */
+.container {
+    margin: 30px 16px;
+    padding: 28px 20px;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+.image-section img {
+    width: 100%;
+    max-width: 240px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.quote-section {
+    text-align: center;
+}
+
+.quote-section h1 {
+    font-size: 1.8rem;
+    margin-bottom: 12px;
+    color: white;
+}
+
+.quote-section p {
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 16px;
+}
+
+.quote-section blockquote {
+    font-style: italic;
+    padding: 16px 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 16px;
+    border-left: 4px solid #60a5fa;
+    color: white;
+}
+
+/* =====================
+   CONTACT SECTION
+   ===================== */
+#contact {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 16px;
+}
+
+.contact-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-form,
+.contact-details {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(16px);
+    border-radius: 24px;
+    padding: 28px 22px;
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: white;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 16px;
+    border: none;
+    border-radius: 16px;
+    background: rgba(255,255,255,0.95);
+    font-size: 1rem;
+    outline: none;
+    color: #0f172a;
+}
+
+.contact-form button {
+    width: 100%;
+    padding: 14px;
+    background: #3b82f6;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.contact-form button:hover {
+    background: #2563eb;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.contact-details {
+    color: white;
+}
+
+.contact-details h3 {
+    font-size: 1.6rem;
+    margin-bottom: 16px;
+    color: #93c5fd;
+}
+
+/* =====================
+   FOOTER
+   ===================== */
+footer {
+    text-align: center;
+    padding: 24px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    margin-top: 40px;
+}
+
+.footer-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+    margin-bottom: 20px;
+}
+
+/* =====================
+   RESPONSIVE
+   ===================== */
+@media (min-width: 600px) {
+    .funfact-container {
+        grid-template-columns: 1fr 1fr;
+        max-width: 620px;
+    }
+
+    .slider {
+        height: 320px;
+    }
+
+    .text-overlay h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .funfact-container {
+        grid-template-columns: repeat(4, 1fr);
+        max-width: 1100px;
+    }
+
+    .container {
+        flex-direction: row;
+        max-width: 1000px;
+        margin: 40px auto;
+        text-align: left;
+    }
+
+    .quote-section {
+        text-align: left;
+    }
+
+    .contact-content {
+        flex-direction: row;
+    }
+
+    .contact-form,
+    .contact-details {
+        width: 48%;
+    }
+
+    .slider {
+        height: 400px;
+    }
+}
+/* =====================
+   CUSTOM LOGOUT MODAL (Dark Blue Glass)
+   ===================== */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-card {
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 20px;
+    padding: 30px 25px;
+    width: 90%;
+    max-width: 320px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+.modal-card p {
+    font-size: 1.15rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.modal-buttons button {
+    padding: 12px 26px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: 0.25s;
+}
+
+.btn-cancel {
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.btn-cancel:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-confirm {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-confirm:hover {
+    background: #2563eb;
+    transform: translateY(-2px);
+}
+/* Lilimitahan nito ang laki ng gallery items sa phone display */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns para sa mobile */
+    gap: 10px;
+    padding: 10px;
+    max-width: 100%;
+    max-height: 50%;
+}
+
+.gallery-item {
+    background: #4AB3;
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    .gallery-item {
+    background: transparent !important; /* Tinatanggal ang puting background */
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.thumbnail {
+    width: 100% !important;
+    height: 180px !important;       /* Itakda ang pare-parehong taas */
+    object-fit: cover !important;   /* Para sakto at hindi ma-distort ang pic sa box */
+    border-radius: 8px;             /* Opsyonal: Para rounded ang gilid ng pic */
+    display: block;
+}
+}
+/* Lightbox Container */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+/* Lightbox Image */
+.lightbox-content {
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 80%;
+    object-fit: contain;
+}
+
+/* CLOSE BUTTON - Nasa Upper Right Corner */
+.lightbox .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #ffffff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* PREV & NEXT BUTTONS - Nasa Kaliwa at Kanan ng Screen/Image */
+.lightbox .prev, .lightbox .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    user-select: none;
+    z-index: 10000;
+}
+
+/* Pwesto sa Kaliwa (Prev) */
+.lightbox .prev {
+    left: 15px;
+}
+
+/* Pwesto sa Kanan (Next) */
+.lightbox .next {
+    right: 15px;
+}
+
+/* Hover effect kapag itinapat ang mouse o daliri */
+.lightbox .prev:hover, .lightbox .next:hover, .lightbox .close:hover {
+    color: #f1f1f1;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* ITO ANG PINAKAMAHALAGA: Pinipigilan nitong lumaki nang sobra ang image */
+.thumbnail {
+    width: 100% !important;
+    height: 150px !important; /* Sakto lang na taas para sa mobile gallery */
+    object-fit: cover !important; /* Para hindi ma-distort ang larawan */
+    display: block;
+}
+
+/* Para sa Lightbox Image (lalabas lang pag kinlick ang image) */
+.lightbox {
+    display: none; /* Naka-hide kapag hindi kiniclick */
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80%;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* Skills Section Base Layout */
+#skills-section {
+    text-align: center;
+    padding: 30px 20px;
+    color: #ffffff;
+}
+
+#skills-section .subtitle {
+    max-width: 600px;
+    margin: 10px auto 25px;
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+/* Skill Selector Buttons */
+.skill-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.skill-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 10px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.skill-btn:hover, .skill-btn.active {
+    background: #ffffff;
+    color: #0d253f;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* 3D Flip Card Styles */
+.card-container {
+    perspective: 1000px; /* Essential for 3D depth */
+    width: 90%;
+    max-width: 450px;
+    min-height: 260px;
+    margin: 0 auto;
+}
+
+.flip-card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Applied when flipping */
+.flip-card.flipped {
+    transform: rotateY(180deg);
+}
+
+/* Shared Card Face Styling */
+.card-face {
+    position: absolute;
+    width: 100%;
+    min-height: 250px;
+    backface-visibility: hidden; /* Hides the back side when facing away */
+    border-radius: 16px;
+    padding: 25px 20px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.95);
+    color: #1a202c;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    text-align: left;
+}
+
+.card-face h3 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: #0d253f;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.card-face ul {
+    padding-left: 20px;
+    margin-top: 15px;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.card-face li {
+    margin-bottom: 10px;
+}
+
+/* Back face is rotated 180deg initially */
+.card-back {
+    transform: rotateY(180deg);
+}
+
+
