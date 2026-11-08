@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Personal Website</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to My Personal Website</h1>
+    </header>
+
+    <nav>
+    <ul>
+        <li><a href="index.x.html">HOME</a></li>
+        <li class="dropdown">
+            <a href="#" class="dropbtn">ABOUT ▾</a>
+            <div class="dropdown-content">
+                <a href="skills.html">Skills I'm Developing</a>
+                <a href="goals.html">My Goals as a Student</a>
+                <a href="funfacts.html">Fun Facts About Me</a>
+            </div>
+        </li>
+        <li><a href="gallery.html">GALLERY</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+        <li>
+            <a href="javascript:void(0);" class="logout-button" onclick="confirmLogout()">LOG OUT</a>
+        </li>
+    </ul>
+</nav>
+
+    <!-- Image Slider -->
+    <div class="slider">
+        <div class="slides">
+            <div class="slide">
+                <img src="home.jpg" alt="home">
+                <div class="text-overlay"><h1>Welcome to my Website</h1></div>
+            </div>
+            <div class="slide">
+                <img src="selftime.jpg" alt="selftime">
+                <div class="text-overlay"><h1>For starter my name's Vince</h1></div>
+            </div>
+            <div class="slide">
+                <img src="alsome.jpg" alt="alsome">
+                <div class="text-overlay"><h1>A 2nd year BSIT student</h1></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fun Facts Section -->
+    <section id="drop">
+        <h2>Fun Facts About Me</h2>
+        <p class="intro-text">
+            I'm currently into animation stuff now and not that really good at it, tho I can say that I'm very very passionate about it and I want to improve in it, except from that here are some of my funfact about my self..
+        </p>
+
+        <div class="funfact-container">
+            <div class="funfact-card">
+                <div class="funfact-inner">
+                    <div class="funfact-front">
+                        <p>I love Programming!</p>
+                    </div>
+                    <div class="funfact-back">
+                        <p>Actually I dont, at first... Tho I kinda already used to loving it now</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="funfact-card">
+                <div class="funfact-inner">
+                    <div class="funfact-front">
+                        <p>Coffee Explorer!</p>
+                    </div>
+                    <div class="funfact-back">
+                        <p>I have this pretty wierd habbit of mine, I like to experiment, like mixing stuff to my coffee</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="funfact-card">
+                <div class="funfact-inner">
+                    <div class="funfact-front">
+                        <p>I love ARTS</p>
+                    </div>
+                    <div class="funfact-back">
+                        <p>I still draw but I dont draw anymore...</p>
+                    </div>
+                </div>
+            </div>
+
+
+
+        <div class="see-more-container">
+            <a href="funfacts.html" class="see-more-button">See More Funfacts</a>
+        </div>
+    </section>
+
+    <!-- About / Quote Section -->
+    <div class="container">
+        <div class="image-section">
+            <img src="akolangto.jpg" alt="Ton's Image">
+        </div>
+        <div class="quote-section">
+            <h1>Hi, my name's Vince</h1>
+            <p>
+                I'm an Information Technology student, and also an artist.. I'm studying BSIT cuz I want to apply my skills in art in technology...
+            </p>
+            <blockquote>
+                "We accept the love we think we deserve."
+            </blockquote>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close" onclick="event.stopPropagation(); closeLightbox()">&times;</span>
+        <img class="lightbox-content" id="lightboxImage" src="">
+    </div>
+
+    <script>
+        // Image Slider
+        const slides = document.querySelector('.slides');
+        let index = 0;
+
+        function showNextSlide() {
+            index = (index + 1) % 3;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        }
+        setInterval(showNextSlide, 3000);
+
+        // Lightbox
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+            lightboxImage.src = imageSrc;
+            lightbox.style.display = 'flex';
+            document.querySelector('header').style.display = 'none';
+            document.querySelector('nav').style.display = 'none';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.querySelector('header').style.display = 'block';
+            document.querySelector('nav').style.display = 'block';
+        }
+
+        // Logout
+        function confirmLogout() {
+            if (confirm("Are you sure you want to log out?")) {
+                localStorage.removeItem('isLoggedIn');
+                window.location.href = 'login.html';
+            }
+        }
+
+        // Mobile-friendly dropdown (tap instead of hover)
+        document.addEventListener('DOMContentLoaded', function () {
+            const dropbtn = document.querySelector('.dropbtn');
+            const dropdownContent = document.querySelector('.dropdown-content');
+
+            if (dropbtn && dropdownContent) {
+                dropbtn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    dropdownContent.classList.toggle('show');
+                });
+
+                // Close when clicking outside
+                window.addEventListener('click', function (e) {
+                    if (!e.target.matches('.dropbtn') && !e.target.closest('.dropdown')) {
+                        dropdownContent.classList.remove('show');
+                    }
+                });
+            }
+        });
+    </script>
+    <!-- Custom Logout Modal -->
+    <!-- Custom Logout Modal -->
+<div id="logoutModal" class="modal">
+    <div class="modal-card">
+        <p>Are you sure you want to log out?</p>
+        <div class="modal-buttons">
+            <button class="btn-cancel" onclick="closeLogoutModal()">Cancel</button>
+            <button class="btn-confirm" onclick="doLogout()">OK</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
